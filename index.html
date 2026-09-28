@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>GSTdesk – 3 कार्यदिवस में GST पंजीकरण</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#FBF5F4;--surface:#fff;--ink:#241413;--muted:#6B5451;--brand:#B3261E;--brand-ink:#fff;--accent:#F2A900;--line:#EAD6D3;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#1A0F0E;--surface:#271716;--ink:#F5EAE8;--muted:#C4A6A2;--brand:#FF7A70;--brand-ink:#2A0806;--line:#4A2B28}}
+:root[data-theme="dark"]{--bg:#1A0F0E;--surface:#271716;--ink:#F5EAE8;--muted:#C4A6A2;--brand:#FF7A70;--brand-ink:#2A0806;--line:#4A2B28}
+html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth}
+*,*:before,*:after{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 17px/1.75 "Noto Sans Devanagari",system-ui,sans-serif}
+h1,h2,h3{font-family:"Noto Sans Devanagari",Georgia,serif;line-height:1.35;margin:0}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.wrap{max-width:1040px;margin:0 auto;padding:0 20px}
+header{display:flex;justify-content:space-between;align-items:center;padding:18px 0}
+.logo{font:800 22px "Noto Sans Devanagari",sans-serif;text-decoration:none}
+.logo b{color:var(--accent)}
+nav a{margin-left:20px;text-decoration:none;font-weight:500;font-size:15px}
+.btn{display:inline-block;background:var(--brand);color:var(--brand-ink);padding:13px 22px;border-radius:8px;font-weight:600;text-decoration:none;border:0;font-size:16px;cursor:pointer;font-family:inherit}
+.btn.alt{background:transparent;color:var(--ink);border:1.5px solid var(--ink)}
+.hero{padding:44px 0 56px}
+.hero h1{font-size:clamp(38px,6.5vw,68px);font-weight:800;max-width:16ch;letter-spacing:0}
+.hero p.lead{font-size:20px;color:var(--muted);max-width:52ch;margin:20px 0 28px}
+.cta{display:flex;gap:12px;flex-wrap:wrap}
+.gstin{margin-top:48px;background:var(--surface);border:1.5px solid var(--line);border-radius:14px;padding:24px}
+.gstin h2{font-size:20px;margin-bottom:4px}
+.gstin p{margin:0 0 18px;color:var(--muted);font-size:15px}
+.chars{display:flex;flex-wrap:wrap;gap:6px}
+.seg{display:flex;flex-direction:column;align-items:center;cursor:pointer;background:none;border:0;padding:0;font:inherit;color:inherit}
+.seg .c{display:flex}
+.seg .c span{width:clamp(20px,5.2vw,38px);height:clamp(30px,7vw,48px);display:grid;place-items:center;font:700 clamp(15px,3.6vw,24px) ui-monospace,Menlo,monospace;border:1.5px solid var(--line);border-right-width:0;background:var(--bg)}
+.seg .c span:last-child{border-right-width:1.5px;border-radius:0 6px 6px 0}
+.seg .c span:first-child{border-radius:6px 0 0 6px}
+.seg .bar{height:5px;width:100%;margin-top:6px;border-radius:3px;background:var(--line)}
+.seg.on .bar{background:var(--accent)}
+.seg.on .c span{border-color:var(--accent);background:color-mix(in srgb,var(--accent) 16%,var(--bg))}
+#gdesc{margin-top:18px;min-height:3.4em;font-size:16px}
+#gdesc b{font-family:"Noto Sans Devanagari",sans-serif;font-size:18px}
+section{padding:56px 0;border-top:1px solid var(--line)}
+section>.wrap>h2{font-size:clamp(28px,4.5vw,40px);margin-bottom:10px;}
+.sub{color:var(--muted);max-width:60ch;margin:0 0 28px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:16px}
+.box{background:var(--surface);border:1.5px solid var(--line);border-radius:10px;padding:20px}
+.box h3{font-size:20px;margin-bottom:6px}
+.box p{margin:0;color:var(--muted);font-size:15.5px}
+.big{font:800 34px "Noto Sans Devanagari",sans-serif;color:var(--brand)}
+.steps{list-style:none;padding:0;margin:0;counter-reset:s;display:grid;gap:0}
+.steps li{counter-increment:s;display:grid;grid-template-columns:52px 1fr;padding:18px 0;border-bottom:1px solid var(--line)}
+.steps li:before{content:counter(s);font:800 30px "Noto Sans Devanagari",sans-serif;color:var(--accent)}
+.steps strong{display:block;font-size:18px}
+.steps span{color:var(--muted);font-size:15.5px}
+.plan.hot{border-color:var(--brand);border-width:2.5px}
+.plan ul{padding-left:18px;margin:12px 0 18px;color:var(--muted);font-size:15.5px}
+.price{font:800 34px "Noto Sans Devanagari",sans-serif}
+.price small{font:400 14px "Noto Sans Devanagari";color:var(--muted)}
+details{border-bottom:1px solid var(--line);padding:16px 0}
+summary{font-weight:600;cursor:pointer}
+details p{margin:10px 0 0;color:var(--muted)}
+form{display:grid;gap:14px;max-width:520px}
+label{display:grid;gap:5px;font-weight:500;font-size:15px}
+input,select{padding:12px;border:1.5px solid var(--line);border-radius:8px;background:var(--surface);color:var(--ink);font:inherit}
+#ok{display:none;background:var(--surface);border:2px solid var(--brand);border-radius:10px;padding:18px;max-width:520px}
+footer{padding:32px 0;border-top:1px solid var(--line);color:var(--muted);font-size:14px}
+@media(max-width:640px){nav a.h{display:none}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header><a class="logo" href="#">GST<b>desk</b></a>
+<nav><a class="h" href="#who">किसे GST चाहिए</a><a class="h" href="#process">प्रक्रिया</a><a class="h" href="#pricing">शुल्क</a><a href="#apply">आवेदन</a></nav></header>
+
+<div class="hero">
+<h1>पोर्टल की झंझट के बिना पाएं अपना GSTIN</h1>
+<p class="lead">हम आपके दस्तावेज़ तैयार करते हैं, GST पोर्टल पर आवेदन दाखिल करते हैं और अधिकारी के हर सवाल का जवाब देते हैं। ज़्यादातर पंजीकरण 3 कार्यदिवस में मंज़ूर हो जाते हैं।</p>
+<div class="cta"><a class="btn" href="#apply">पंजीकरण शुरू करें</a><a class="btn alt" href="#pricing">शुल्क देखें</a></div>
+
+<div class="gstin">
+<h2>आपके GST नंबर का मतलब</h2>
+<p>हर GSTIN में 15 अक्षर होते हैं। किसी हिस्से को छूकर देखें कि वह क्या दर्शाता है।</p>
+<div class="chars" id="chars"></div>
+<div id="gdesc" aria-live="polite"></div>
+</div>
+</div>
+</div>
+
+<section id="who"><div class="wrap">
+<h2>क्या आपको पंजीकरण कराना ज़रूरी है?</h2>
+<p class="sub">सालाना टर्नओवर इन सीमाओं को पार करते ही पंजीकरण अनिवार्य हो जाता है, या नीचे बताए मामलों में उससे पहले भी।</p>
+<div class="grid">
+<div class="box"><div class="big">₹40 लाख</div><h3>सामान बेचना</h3><p>सामान्य सीमा। कुछ राज्यों में ₹20 लाख, और विशेष श्रेणी वाले राज्यों में ₹20 लाख या ₹10 लाख।</p></div>
+<div class="box"><div class="big">₹20 लाख</div><h3>सेवाएं देना</h3><p>पूर्वोत्तर जैसे विशेष श्रेणी वाले राज्यों में ₹10 लाख।</p></div>
+<div class="box"><div class="big">कोई भी राशि</div><h3>पहले दिन से पंजीकरण कराएं यदि आप</h3><p>दूसरे राज्यों में बेचते हैं, ई-कॉमर्स प्लेटफ़ॉर्म से बेचते हैं, या इनपुट सर्विस डिस्ट्रीब्यूटर अथवा अनिवासी करदाता हैं।</p></div>
+</div>
+<p class="sub" style="margin-top:20px;font-size:14px">सीमाएं अधिसूचनाओं से बदलती रहती हैं। आवेदन से पहले अपने राज्य की मौजूदा सीमा हमसे पक्की कर लें।</p>
+</div></section>
+
+<section id="docs"><div class="wrap">
+<h2>आपको ये दस्तावेज़ चाहिए होंगे</h2>
+<p class="sub">स्कैन या साफ़ फ़ोटो तैयार रखें। दाखिल करने से पहले हम हर एक जांचते हैं।</p>
+<div class="grid">
+<div class="box"><h3>पहचान</h3><p>मालिक या साझेदारों का PAN और आधार, साथ में पासपोर्ट साइज़ फ़ोटो।</p></div>
+<div class="box"><h3>व्यवसाय का पता</h3><p>बिजली बिल या संपत्ति कर की रसीद। किराए की जगह हो तो किरायानामा और मालिक का NOC भी चाहिए।</p></div>
+<div class="box"><h3>बैंक खाता</h3><p>व्यवसाय के नाम का कैंसिल चेक या पासबुक का पहला पन्ना।</p></div>
+<div class="box"><h3>संस्था का प्रमाण</h3><p>फर्म और कंपनियों के लिए पार्टनरशिप डीड, निगमन प्रमाणपत्र या MOA/AOA।</p></div>
+</div>
+</div></section>
+
+<section id="process"><div class="wrap">
+<h2>यह कैसे काम करता है</h2>
+<ol class="steps">
+<li><div><strong>अपनी जानकारी दें</strong><span>नीचे का छोटा फ़ॉर्म भरें। GST विशेषज्ञ 2 कार्य घंटों में आपको कॉल करेगा।</span></div></li>
+<li><div><strong>दस्तावेज़ भेजें</strong><span>उन्हें WhatsApp या ईमेल पर भेजें। कुछ अस्पष्ट हो तो हम तुरंत बता देते हैं।</span></div></li>
+<li><div><strong>हम आपका आवेदन दाखिल करते हैं</strong><span>फ़ॉर्म GST REG-01 आधार प्रमाणीकरण और आपके व्यवसाय के विवरण के साथ जमा किया जाता है।</span></div></li>
+<li><div><strong>निगरानी और जवाब</strong><span>अधिकारी कोई सवाल उठाए तो हम जवाब तैयार करके बिना अतिरिक्त शुल्क दोबारा जमा करते हैं।</span></div></li>
+<li><div><strong>पाएं अपना GSTIN</strong><span>आपको पंजीकरण प्रमाणपत्र और पहला रिटर्न भरने की छोटी गाइड मिलती है।</span></div></li>
+</ol>
+</div></section>
+
+<section id="pricing"><div class="wrap">
+<h2>सीधा, तय शुल्क</h2>
+<p class="sub">सिर्फ़ पेशेवर शुल्क। ये नमूना दाम हैं; अपनी सेवा के अनुसार बदलें। GST पंजीकरण पर कोई सरकारी शुल्क नहीं लगता।</p>
+<div class="grid">
+<div class="box plan"><h3>व्यक्ति / प्रोप्राइटर</h3><div class="price">₹999 <small>एक बार</small></div><ul><li>दस्तावेज़ जांच</li><li>आवेदन दाखिल करना</li><li>सवालों का जवाब</li></ul><a class="btn alt" href="#apply">प्लान चुनें</a></div>
+<div class="box plan hot"><h3>पार्टनरशिप / LLP / कंपनी</h3><div class="price">₹1,999 <small>एक बार</small></div><ul><li>व्यक्ति प्लान की सभी सुविधाएं</li><li>अधिकृत हस्ताक्षरकर्ता की व्यवस्था</li><li>पहले महीने रिटर्न की मुफ़्त गाइडेंस</li></ul><a class="btn" href="#apply">प्लान चुनें</a></div>
+<div class="box plan"><h3>पंजीकरण + रिटर्न फाइलिंग</h3><div class="price">₹4,999 <small>पहला साल</small></div><ul><li>पंजीकरण शामिल</li><li>मासिक GSTR-1 और 3B</li><li>नोटिस में सहायता</li></ul><a class="btn alt" href="#apply">प्लान चुनें</a></div>
+</div>
+</div></section>
+
+<section id="faq"><div class="wrap">
+<h2>अक्सर पूछे जाने वाले सवाल</h2>
+<details><summary>पंजीकरण में कितना समय लगता है?</summary><p>सही दस्तावेज़ों वाले आवेदन आमतौर पर 3 से 7 कार्यदिवस में मंज़ूर हो जाते हैं। अधिकारी के सवाल आने पर कुछ दिन और लग सकते हैं।</p></details>
+<details><summary>क्या सीमा से कम टर्नओवर पर स्वेच्छा से पंजीकरण करा सकता हूं?</summary><p>हां। स्वैच्छिक पंजीकरण से आप इनपुट टैक्स क्रेडिट ले सकते हैं और GST इनवॉइस मांगने वाले व्यवसायों को बेच सकते हैं। इसके बाद नियमित रिटर्न भरना होगा।</p></details>
+<details><summary>क्या दुकान या ऑफ़िस होना ज़रूरी है?</summary><p>व्यवसाय के लिए वैध पता चाहिए। घर से चलने वाले व्यवसाय में वह आपका घर हो सकता है; संपत्ति आपकी न हो तो किरायानामा या NOC चाहिए।</p></details>
+<details><summary>आवेदन अस्वीकार हो जाए तो?</summary><p>हम कारण पता करते हैं, गलती सुधारते हैं और दोबारा दाखिल करते हैं। अस्वीकृति अक्सर पते के प्रमाण या नामों के अंतर की वजह से होती है।</p></details>
+</div></section>
+
+<section id="apply"><div class="wrap">
+<h2>अपना पंजीकरण शुरू करें</h2>
+<p class="sub">अपने व्यवसाय के बारे में थोड़ा बताएं। हम आज ही आपको कॉल करेंगे।</p>
+<p style="margin:0 0 24px;font-weight:600">सीधे बात करनी है? कॉल करें: <a href="tel:+919897012345">+91-9897012345</a></p>
+<form id="f">
+<label>पूरा नाम<input name="n" required autocomplete="name"></label>
+<label>मोबाइल नंबर<input name="m" type="tel" required pattern="[0-9+ ]{10,14}" autocomplete="tel"></label>
+<label>व्यवसाय का प्रकार<select name="t"><option>प्रोप्राइटरशिप</option><option>पार्टनरशिप / LLP</option><option>प्राइवेट लिमिटेड कंपनी</option><option>अन्य</option></select></label>
+<label>राज्य<input name="s" required placeholder="जैसे महाराष्ट्र"></label>
+<button class="btn" href="tel:+919897012345" type="submit">कॉल बैक का अनुरोध करें</button>
+</form>
+<div id="ok" role="status"></div>
+</div></section>
+
+<footer><div class="wrap">संपर्क: <a href="tel:+919897012345">+91-9897012345</a>
+<br>GSTdesk एक स्वतंत्र सहायता सेवा है और इसका GST नेटवर्क या भारत सरकार से कोई संबंध नहीं है। लॉन्च से पहले इस पंक्ति, संपर्क विवरण और शुल्क को अपने अनुसार बदलें।</div></footer>
+
+<script>
+var parts=[
+{t:"29",n:"राज्य कोड",d:"शुरुआती दो अंक पंजीकरण वाले राज्य या केंद्र शासित प्रदेश की पहचान बताते हैं। 29 कर्नाटक, 27 महाराष्ट्र और 07 दिल्ली है।"},
+{t:"ABCDE1234F",n:"PAN",d:"अगले दस अक्षर करदाता का PAN होते हैं। एक PAN पर हर राज्य में अलग GSTIN हो सकता है।"},
+{t:"1",n:"इकाई संख्या",d:"बताता है कि उसी PAN के उस राज्य में कितने पंजीकरण हैं। 1 यानी पहला, फिर 2, 3 और आगे।"},
+{t:"Z",n:"स्थिर अक्षर",d:"हमेशा अक्षर Z। इसे भविष्य के उपयोग के लिए रखा गया है।"},
+{t:"5",n:"जांच अंक",d:"बाकी 14 अक्षरों से निकाला गया चेकसम अक्षर। यह टाइपिंग की गलतियां पकड़ता है।"}];
+var c=document.getElementById("chars"),d=document.getElementById("gdesc");
+parts.forEach(function(p,i){
+var b=document.createElement("button");b.className="seg";b.type="button";
+b.setAttribute("aria-label",p.n+": "+p.t);
+b.innerHTML='<div class="c">'+p.t.split("").map(function(x){return"<span>"+x+"</span>"}).join("")+'</div><div class="bar"></div>';
+function on(){[].forEach.call(c.children,function(e){e.classList.remove("on")});b.classList.add("on");d.innerHTML="<b>"+p.n+"</b><br>"+p.d}
+b.onclick=on;b.onmouseenter=on;b.onfocus=on;c.appendChild(b);if(i==1)on();
+});
+document.getElementById("f").onsubmit=function(e){
+e.preventDefault();
+var n=this.n.value.trim().replace(/[<>&]/g,"");
+this.style.display="none";
+var o=document.getElementById("ok");o.style.display="block";
+o.textContent="धन्यवाद, "+n+"। आपका अनुरोध दर्ज हो गया है। विशेषज्ञ जल्द ही "+this.m.value+" पर आपको कॉल करेंगे।";
+};
+</script>
+</body>
+</html>
